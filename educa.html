@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .center {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .education-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-left: 4px solid #0073b1;
+      background: #f9f9f9;
+    }
+    .school-name {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .degree {
+      color: #666;
+    }
+    .dates {
+      font-size: 0.9em;
+      color: #999;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <a href="index.html">Home</a>
+  </div>
+  <div class="container">
+    <h1>Educations</h1>
+    <!-- Container where the education items will be generated -->
+    <div id="educationContainer"></div>
+  </div>
+  <div class="center">
+    &copy; 2025 Larry Zhong. All rights reserved.
+  </div>
+
+  <script>
+    const educationData = `
+      Shady Side Academy, High School Diploma, Aug 2024 - June 2027;
+      Keystone Academy, MYP Diploma, Aug 2023 - June 2024;
+      Canadian International School of Beijing, PYP Diploma, Sep 2017 - Jun 2023;
+      E - Learning, Coursera / Edx / Khan Academy / XueTangx / etc, Mar 2024 - Now;
+    `;
+
+    const container = document.getElementById('educationContainer');
+    const educationEntries = educationData.split(';').filter(entry => entry.trim() !== '');
+
+    educationEntries.forEach(entry => {
+      // Split by commas and remove whitespace.
+      const parts = entry.split(',').map(item => item.trim());
+      
+      if (parts.length >= 3) {
+        const [school, degree, ...datesParts] = parts;
+        const dates = datesParts.join(', ');
+
+        const eduDiv = document.createElement('div');
+        eduDiv.classList.add('education-item');
+
+        const schoolEl = document.createElement('span');
+        schoolEl.classList.add('school-name');
+        schoolEl.textContent = school;
+        eduDiv.appendChild(schoolEl);
+        eduDiv.appendChild(document.createElement('br'));
+
+        const degreeEl = document.createElement('span');
+        degreeEl.classList.add('degree');
+        degreeEl.textContent = degree;
+        eduDiv.appendChild(degreeEl);
+        eduDiv.appendChild(document.createElement('br'));
+
+        const datesEl = document.createElement('span');
+        datesEl.classList.add('dates');
+        datesEl.textContent = dates;
+        eduDiv.appendChild(datesEl);
+
+        container.appendChild(eduDiv);
+      }
+    });
+  </script>
+</body>
+</html>
